@@ -60,11 +60,12 @@ function productDetailsTemplate(product) {
     discountedPrice.textContent = `Discount: $${product.FinalPrice.toFixed(2)}`;
     discountBadge.textContent = `-${discountPercent}% OFF`;
 
-    // Style original price with strikethrough
+  
     originalPrice.style.textDecoration = "line-through";
     originalPrice.style.marginRight = "0.5rem";
     discountedPrice.style.color = "red";
-  } else {
+  } 
+  else {
     // No discount case
     productPrice.textContent = `$${product.FinalPrice.toFixed(2)}`;
     originalPrice.textContent = "";
