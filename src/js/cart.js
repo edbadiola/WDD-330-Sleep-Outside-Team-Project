@@ -27,7 +27,6 @@ function cartItemTemplate(item) {
 
 renderCartContents();
 
-
 // --- Remove from Cart Feature ---
 
 // Re-render cart with remove buttons
@@ -50,7 +49,7 @@ function renderCartWithRemove() {
   });
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
-  document.querySelectorAll(".remove-item").forEach(btn => {
+  document.querySelectorAll(".remove-item").forEach((btn) => {
     btn.addEventListener("click", function () {
       const idx = parseInt(this.getAttribute("data-index"));
       removeCartItemAtIndex(idx);
@@ -66,4 +65,3 @@ function removeCartItemAtIndex(index) {
   renderCartWithRemove();
 }
 renderCartWithRemove();
-
