@@ -42,7 +42,7 @@ function productDetailsTemplate(product) {
     productImage.src = product.Image;
     productImage.alt = product.NameWithoutBrand;
 
-
+    // Price elements
   const productPrice = document.getElementById("productPrice");
   const originalPrice = document.getElementById("originalPrice");
   const discountedPrice = document.getElementById("discountedPrice");
@@ -66,7 +66,7 @@ function productDetailsTemplate(product) {
     discountedPrice.style.color = "red";
   } 
   else {
-  
+    // No discount case
     productPrice.textContent = `$${product.FinalPrice.toFixed(2)}`;
     originalPrice.textContent = "";
     discountedPrice.textContent = "";
