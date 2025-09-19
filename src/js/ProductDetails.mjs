@@ -16,7 +16,7 @@ export default class ProductDetails {
     // once the HTML is rendered, add a listener to the Add to Cart button
     // Notice the .bind(this). This callback will not work if the bind(this) is missing. Review the readings from this week on "this" to understand why.
     document
-      .getElementById("addToCart")
+      .getElementById("add-to-cart")
       .addEventListener("click", this.addProductToCart.bind(this));
   }
 
@@ -32,52 +32,22 @@ export default class ProductDetails {
 }
 
 function productDetailsTemplate(product) {
-  document.querySelector("h2").textContent = product.Brand.Name;
-  document.querySelector("h3").textContent = product.NameWithoutBrand;
+  document.querySelector("h2").textContent = product.Category.charAt(0).toUpperCase() + product.Category.slice(1);
+  document.querySelector("#p-brand").textContent = product.Brand.Name;
+  document.querySelector("#p-name").textContent = product.NameWithoutBrand;
 
-  const productImage = document.getElementById("productImage");
-  productImage.src = product.Image;
+  const productImage = document.querySelector("#p-image");
+  productImage.src = product.Images.PrimaryExtraLarge;
   productImage.alt = product.NameWithoutBrand;
+  const euroPrice = new Intl.NumberFormat('de-DE',
+    {
+      style: 'currency', currency: 'EUR',
+    }).format(Number(product.FinalPrice) * 0.85);
+  document.querySelector("#p-price").textContent = `${euroPrice}`;
+  document.querySelector("#p-color").textContent = product.Colors[0].ColorName;
+  document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
 
-  document.getElementById("productPrice").textContent = product.FinalPrice;
-  document.getElementById("productColor").textContent = product.Colors[0].ColorName;
-  document.getElementById("productDesc").innerHTML = product.DescriptionHtmlSimple;
-
-  document.getElementById("addToCart").dataset.id = product.Id;
-    // Price elements
-  const productPrice = document.getElementById("productPrice");
-  const originalPrice = document.getElementById("originalPrice");
-  const discountedPrice = document.getElementById("discountedPrice");
-  const discountBadge = document.getElementById("discountBadge");
-
-  if (product.SuggestedRetailPrice && product.SuggestedRetailPrice > product.FinalPrice) {
-    // Calculate discount %
-    const discountPercent = Math.round(
-      ((product.SuggestedRetailPrice - product.FinalPrice) /
-        product.SuggestedRetailPrice) * 100
-    );
-
-    // Fill in values
-    originalPrice.textContent = `Original Price: $${product.SuggestedRetailPrice.toFixed(2)}`;
-    discountedPrice.textContent = `Discount: $${product.FinalPrice.toFixed(2)}`;
-    discountBadge.textContent = `-${discountPercent}% OFF`;
-
-  
-    originalPrice.style.textDecoration = "line-through";
-    originalPrice.style.marginRight = "0.5rem";
-    discountedPrice.style.color = "red";
-  } 
-  else {
-    // No discount case
-    productPrice.textContent = `$${product.FinalPrice.toFixed(2)}`;
-    originalPrice.textContent = "";
-    discountedPrice.textContent = "";
-    discountBadge.textContent = "";
-  }
-
-    document.getElementById("productColour").textContent = `Colour: ${product.Colors[0].ColorName}`;
-    document.getElementById("productDesc").innerHTML = `Description: ${product.DescriptionHtmlSimple}`;
-    document.getElementById("addToCart").dataset.id = product.Id;
+  document.querySelector("#add-to-cart").dataset.id = product.Id;
 }
 
 // ************* Alternative Display Product Details Method *******************
