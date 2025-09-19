@@ -311,3 +311,25 @@ footer {
   border-top: 1px solid var(--tertiary-color);
   padding: 1em;
 }
+
+/* Keep label and select on the same line with a little space */
+.products label[for="sort"],
+.products #sort {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 1rem;
+}
+
+.products label[for="sort"] {
+  margin-right: 0.5rem;
+  /* small gap between label and dropdown */
+}
+
+.products #sort {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
