@@ -44,6 +44,40 @@ function productDetailsTemplate(product) {
   document.getElementById("productDesc").innerHTML = product.DescriptionHtmlSimple;
 
   document.getElementById("addToCart").dataset.id = product.Id;
+    // Price elements
+  const productPrice = document.getElementById("productPrice");
+  const originalPrice = document.getElementById("originalPrice");
+  const discountedPrice = document.getElementById("discountedPrice");
+  const discountBadge = document.getElementById("discountBadge");
+
+  if (product.SuggestedRetailPrice && product.SuggestedRetailPrice > product.FinalPrice) {
+    // Calculate discount %
+    const discountPercent = Math.round(
+      ((product.SuggestedRetailPrice - product.FinalPrice) /
+        product.SuggestedRetailPrice) * 100
+    );
+
+    // Fill in values
+    originalPrice.textContent = `Original Price: $${product.SuggestedRetailPrice.toFixed(2)}`;
+    discountedPrice.textContent = `Discount: $${product.FinalPrice.toFixed(2)}`;
+    discountBadge.textContent = `-${discountPercent}% OFF`;
+
+  
+    originalPrice.style.textDecoration = "line-through";
+    originalPrice.style.marginRight = "0.5rem";
+    discountedPrice.style.color = "red";
+  } 
+  else {
+    // No discount case
+    productPrice.textContent = `$${product.FinalPrice.toFixed(2)}`;
+    originalPrice.textContent = "";
+    discountedPrice.textContent = "";
+    discountBadge.textContent = "";
+  }
+
+    document.getElementById("productColour").textContent = `Colour: ${product.Colors[0].ColorName}`;
+    document.getElementById("productDesc").innerHTML = `Description: ${product.DescriptionHtmlSimple}`;
+    document.getElementById("addToCart").dataset.id = product.Id;
 }
 
 // ************* Alternative Display Product Details Method *******************
