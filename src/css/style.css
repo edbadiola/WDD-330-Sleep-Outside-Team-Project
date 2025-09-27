@@ -405,3 +405,78 @@ main.checkout #checkoutSubmit:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Comments Section ===== */
+#comments {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid #ccc;
+}
+
+#comments h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Comments list */
+#comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Individual comment */
+.comment {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment p:first-child {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: #222;
+}
+
+.comment p:last-child {
+  margin: 0;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Comment form */
+#comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#comment-form input,
+#comment-form textarea {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  resize: vertical;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#comment-form button {
+  align-self: flex-start;
+  padding: 0.6rem 1.2rem;
+  background-color: #2a9d8f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+#comment-form button:hover {
+  background-color: #21867a;
+}
